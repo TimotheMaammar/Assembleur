@@ -53,21 +53,21 @@ section .text ; Section contenant les instructions
    ; OUVERTURE
    ;---------------------------
 
-   mov eax,5 ; int open(const char *pathname, int flags)
-   mov ebx,fichier ; Nom du fichier
-   mov ecx,0 ; Read-Only
+   mov eax, 5 ; int open(const char *pathname, int flags)
+   mov ebx, fichier ; Nom du fichier
+   mov ecx, 0 ; Read-Only
    int 0x80 ; Interruption
 
-   mov [descripteur],eax ; Stockage du descripteur pour après
+   mov [descripteur], eax ; Stockage du descripteur pour après
 
    ;---------------------------
    ; LECTURE
    ;---------------------------
 
-   mov eax,3 ; ssize_t read(int fd, void *buf, size_t count)
-   mov ebx,[descripteur] ; fd = Notre fichier
-   mov ecx,buffer ; buf = Notre buffer
-   mov edx,longueur_buffer ; count = Longueur du buffer
+   mov eax, 3 ; ssize_t read(int fd, void *buf, size_t count)
+   mov ebx, [descripteur] ; fd = Notre fichier
+   mov ecx, buffer ; buf = Notre buffer
+   mov edx, longueur_buffer ; count = Longueur du buffer
    int 0x80 ; Interruption
 
 
@@ -77,9 +77,9 @@ section .text ; Section contenant les instructions
 
    mov edx,eax ; On place le nombre d'octets lus dans EDX
 
-   mov eax,4 ; ssize_t write(int fd, const void *buf, size_t count)
-   mov ebx,1 ; Descripteur correspondant au terminal
-   mov ecx,buffer ; On lit depuis le buffer
+   mov eax, 4 ; ssize_t write(int fd, const void *buf, size_t count)
+   mov ebx, 1 ; Descripteur correspondant au terminal
+   mov ecx, buffer ; On lit depuis le buffer
    int 0x80 ; Interruption
 
 
@@ -87,8 +87,8 @@ section .text ; Section contenant les instructions
    ; FERMETURE
    ;---------------------------
 
-   mov eax,6 ; int close(int fd)
-   mov ebx,[descripteur] ; Notre descripteur
+   mov eax, 6 ; int close(int fd)
+   mov ebx, [descripteur] ; Notre descripteur
    int 0x80 ; Interruption
 
 
